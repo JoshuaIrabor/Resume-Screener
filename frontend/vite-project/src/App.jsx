@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { Upload, LoaderCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import dotenv from 'dotenv';
 
+dotenv.config();
+const VITE_API_URL = import.meta.env.VITE_API_URL;  
 export default function ResumeAnalyzer() {
   const [jobDescription, setJobDescription] = useState('');
   const [requirements, setRequirements] = useState('');
@@ -30,7 +33,7 @@ export default function ResumeAnalyzer() {
     formData.append('file', resumeFile);
 
     try {
-      const res = await axios.post('/api/resumes/upload', formData);
+      const res = await axios.post(`${VITE_API_URL}/api/resumes/upload`, formData);
       if (res.data.url) {
         setUploadedFileUrl(res.data.url);
         alert('File uploaded successfully!');
@@ -61,7 +64,7 @@ export default function ResumeAnalyzer() {
     setDownloadMessage('Downloading file...');
 
     try {
-      const res = await axios.post('/api/resumes/download', {
+      const res = await axios.post(`${VITE_API_URL}/api/resumes/download`, {
         fileUrl: uploadedFileUrl
       });
 
@@ -83,7 +86,7 @@ export default function ResumeAnalyzer() {
   // Parse the resume (extract skills and experience)
   const handleParse = async (filePath) => {
     try {
-      const res = await axios.post('/api/resumes/parse', {
+      const res = await axios.post(`${VITE_API_URL}/api/resumes/parse`, {
         filePath: filePath
       });
 
@@ -114,7 +117,7 @@ export default function ResumeAnalyzer() {
     setIsAnalyzing(true); // Start loading
 
     try {
-      const res = await axios.post('/api/resumes/analyze', {
+      const res = await axios.post(`${VITE_API_URL}/api/resumes/analyze`, {
         JobDescription: jobDescription,
         Requirements: requirements,
         skills: skills,
@@ -163,6 +166,7 @@ export default function ResumeAnalyzer() {
 
   return (
   <>
+  <title>Resume Screener</title>
   <div className="min-h-screen bg-[linear-gradient(45deg,_#ccfbf1,_#ffffff)] px-6 py-10">
     {/* Header */}
     <motion.div
