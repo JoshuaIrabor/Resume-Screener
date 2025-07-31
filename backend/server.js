@@ -26,6 +26,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/resumes", resumeRoutes);
 app.use("/api/updates", updateRoutes);
 
+app.get("/", (req, res) => {
+    res.send("Backend is running...");
+});
+
 
 
 app.listen(PORT, () => {
