@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 2000;
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173", // Allow frontend
+    origin: "http://resume-screener-production.up.railway.app", // Allow frontend
     credentials: true, // Allow cookies and auth headers
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
