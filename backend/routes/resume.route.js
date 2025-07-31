@@ -10,6 +10,9 @@ import { upload } from "../lib/Cloudinary.js";
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+    res.send("Backend is running...");
+});
 router.post("/upload",upload.single("file"), resumeUpload);
 router.post("/download", resumeDownload);
 router.post("/parse", resumeParse);
