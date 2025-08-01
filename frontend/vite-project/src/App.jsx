@@ -22,8 +22,7 @@ export default function ResumeAnalyzer() {
   const [tailoredResume, setTailoredResume] = useState('');
 
   // Upload the resume file
-  console.log(import.meta.env.VITE_API_URL); 
-  console.log("hello");
+  
   const handleUpload = async () => {
     if (!resumeFile) {
       alert('Please select a resume file first.');
