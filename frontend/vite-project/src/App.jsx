@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Upload, LoaderCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import dotenv from 'dotenv';
 
-dotenv.config();
+
+
 const VITE_API_URL = import.meta.env.VITE_API_URL;  
 export default function ResumeAnalyzer() {
   const [jobDescription, setJobDescription] = useState('');
@@ -22,6 +22,8 @@ export default function ResumeAnalyzer() {
   const [tailoredResume, setTailoredResume] = useState('');
 
   // Upload the resume file
+  console.log(import.meta.env.VITE_API_URL); 
+  console.log("hello");
   const handleUpload = async () => {
     if (!resumeFile) {
       alert('Please select a resume file first.');
@@ -49,6 +51,7 @@ export default function ResumeAnalyzer() {
   };
 
   // Download the resume file from Cloudinary
+  
   const handleDownload = async () => {
     if (isDownloading) {
       alert('Download is already in progress. Please wait.');
